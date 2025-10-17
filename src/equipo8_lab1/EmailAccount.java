@@ -12,7 +12,7 @@ import java.util.Calendar;
  * @author andre
  */
 public class EmailAccount {
-
+//hola ing
     Calendar hoy = Calendar.getInstance();
 
     String direccionEmail, password, nombreUsuario;
@@ -44,7 +44,7 @@ public class EmailAccount {
     
     
 
-    public boolean recibirEmai(Email em) {
+    public boolean recibirEmail(Email em) {
         for (int i = 0; i < inbox.length; i++) {
             if (inbox[i] == null) {
                 inbox[i] = em;
