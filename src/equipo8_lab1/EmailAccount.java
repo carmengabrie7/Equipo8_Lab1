@@ -53,10 +53,10 @@ public class EmailAccount {
         System.out.println("Fecha de hoy: " + FormatoFecha.format(hoy.getTime()));
         System.out.println("Posicion – Emisor – Asunto – [Leido / Sin Leer]");
 
-        int sinLeer = contarNOLEIDOS(this.inbox, 0);
+      mostrarTODO(inbox,0);
 
-        System.out.println("Correos Totales");
-        System.out.println("Correos Sin Leer" + sinLeer);
+        System.out.println("Correos Totales: " +correostotales);
+        System.out.println("Correos Sin Leer" + sinleer);
 
     }
 
@@ -66,7 +66,7 @@ public class EmailAccount {
 
         if (indice >= 0 && indice < inbox.length && inbox[indice] != null) {
             inbox[indice].Print();
-            inbox[indice].marcarComoLeido();
+            inbox[indice].isLeido();
 
         } else {
             System.out.println("Correo no existe.");
