@@ -3,18 +3,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package equipo8_lab1;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 /**
  *
  * @author andre
  */
 public class EmailAccount {
+        Calendar hoy = Calendar.getInstance();
 
     String direccionEmail, password, nombreUsuario;
-<<<<<<< HEAD
 
     
-=======
     Email[] inbox;
 
     public EmailAccount(String direccionEmail, String password, String nombreUsuario, Email[] inbox) {
@@ -47,10 +47,15 @@ public class EmailAccount {
     }
     
     public void printInbox(){
-        Calendar hoy = Calendar.getInstance();
-    
+        SimpleDateFormat FormatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        System.out.println("Fecha de hoy: "+FormatoFecha.format(hoy.getTime()));
+        System.out.println("Posicion – Emisor – Asunto – [Leido / Sin Leer]");
+        
+        
+        System.out.println("Correos Totales");
+        System.out.println("Correos Sin Leer");
+        
     }
 
 
->>>>>>> 5ee7b93dc564f666863aa487b9e17114f9c19a56
 }
