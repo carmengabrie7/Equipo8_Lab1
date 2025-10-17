@@ -9,5 +9,8 @@ package equipo8_lab1;
  * @author andre
  */
 public class EmailAccount {
+
+    String direccionEmail, password, nombreUsuario;
+
     
 }
