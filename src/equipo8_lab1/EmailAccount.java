@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package equipo8_lab1;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 /**
  *
  * @author andre
  */
 public class EmailAccount {
-        Calendar hoy = Calendar.getInstance();
+
+    Calendar hoy = Calendar.getInstance();
 
     String direccionEmail, password, nombreUsuario;
 
-    
     Email[] inbox;
 
     public EmailAccount(String direccionEmail, String password, String nombreUsuario, Email[] inbox) {
@@ -45,17 +47,31 @@ public class EmailAccount {
         }
         return false;
     }
-    
-    public void printInbox(){
+
+    public void printInbox() {
         SimpleDateFormat FormatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        System.out.println("Fecha de hoy: "+FormatoFecha.format(hoy.getTime()));
+        System.out.println("Fecha de hoy: " + FormatoFecha.format(hoy.getTime()));
         System.out.println("Posicion – Emisor – Asunto – [Leido / Sin Leer]");
-        
-        
+
+        int sinLeer = contarNOLEIDOS(this.inbox, 0);
+
         System.out.println("Correos Totales");
-        System.out.println("Correos Sin Leer");
-        
+        System.out.println("Correos Sin Leer" + sinLeer);
+
     }
 
+    public void leerEmail(int pos) {
+
+        int indice = pos - 1;
+
+        if (indice >= 0 && indice < inbox.length && inbox[indice] != null) {
+            inbox[indice].Print();
+            inbox[indice].marcarComoLeido();
+
+        } else {
+            System.out.println("Correo no existe.");
+
+        }
+    }
 
 }
