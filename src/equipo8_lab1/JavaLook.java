@@ -17,18 +17,15 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 public class JavaLook extends JFrame {
-    private EmailAccount[] Cuentas = new EmailAccount[10];
+    private final EmailAccount[] Cuentas = new EmailAccount[10];
     private EmailAccount Actual = null;
     
-    private CardLayout cartas = new CardLayout();
-    private JPanel wasd = new JPanel(cartas);
+    private final CardLayout cartas = new CardLayout();
+    private final JPanel wasd = new JPanel(cartas);
     
-    private JTextField TxtLoginCorreo;
-    private JPasswordField TxtLoginContra;
+    private JTextArea AreaInbox = new JTextArea();
     
-    private JLabel LblUsuario;
-    private JLabel LblReloj;
-    private JTextArea AreaInbox;
+    private JLabel LblUsuarioActual;    
 
     public JavaLook() {
         super("Sistema de Email");
@@ -36,22 +33,37 @@ public class JavaLook extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
         
+        LblUsuarioActual = new JLabel("Ningun usuario conectado");
+        LblUsuarioActual.setFont(new Font("Arial", Font.BOLD, 12));
+        LblUsuarioActual.setForeground(Color.BLUE);
+        
         JButton BtnLogin = new JButton("Iniciar sesion / Crear cuenta");
         BtnLogin.addActionListener(e -> LoginoCrear());
         
-        AreaInbox.setEnabled(false);
+        JPanel Topbar = new JPanel(new BorderLayout());
+        
+        JPanel izquierda = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 6));
+        izquierda.add(BtnLogin);
+        
+        Topbar.add(izquierda, BorderLayout.WEST);
+        Topbar.add(LblUsuarioActual, BorderLayout.CENTER);
+        
+        AreaInbox.setEnabled(true);
+        AreaInbox.setEditable(false);
+        AreaInbox.setFont(new Font("Arial", Font.BOLD, 16));
         JScrollPane Scroll = new JScrollPane(AreaInbox);
         
         JButton BtnVerInbox = new JButton("Ver inbox");
         BtnVerInbox.addActionListener(e -> MostrarInbox());
         
         JButton BtnEnviar = new JButton("Enviar correo");
+        BtnEnviar.addActionListener(e -> EnviarCorreo());
         
         JPanel Abajo = new JPanel();
         Abajo.add(BtnVerInbox);
         Abajo.add(BtnEnviar);
         
-        add(BtnLogin, BorderLayout.NORTH);
+        add(Topbar, BorderLayout.NORTH);
         add(Scroll, BorderLayout.CENTER);
         add(Abajo, BorderLayout.SOUTH);
         
@@ -137,6 +149,38 @@ public class JavaLook extends JFrame {
         if (Contenido == null) {
             return;
         }
+        Email Nuevo = new Email(Actual.getDireccionEmail(), Asunto, Contenido);
+        if (Receptor.recibirEmai(Nuevo)) {
+            JOptionPane.showMessageDialog(this, "Correo enviado con exito!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Inbox del destinatario esta lleno.");
+        }
+    }
+    
+    /*
+        UTILIDADES
+    */
+    private EmailAccount BuscarCuenta(String correo) {
+        for (EmailAccount corr : Cuentas) {
+            if (corr != null && corr.getDireccionEmail().equalsIgnoreCase(correo)) {
+                return corr;
+            }
+        }
+        return null;
+    }
+    
+    private String FechaActual() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
+        return sdf.format(Calendar.getInstance().getTime());
+    }
+    
+    private void GuardarCuenta(EmailAccount nueva) {
+        for (int i = 0; i < Cuentas.length; i++) {
+            if (Cuentas[i] == null) {
+                Cuentas[i] = nueva;
+                return;
+            }
+        }
     }
     
     public static void main(String[] args) {
@@ -144,6 +188,4 @@ public class JavaLook extends JFrame {
             new JavaLook().setVisible(true);
         });
     }
-    
-    
 }
