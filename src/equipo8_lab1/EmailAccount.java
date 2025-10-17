@@ -53,7 +53,9 @@ public class EmailAccount {
         System.out.println("Fecha de hoy: " + FormatoFecha.format(hoy.getTime()));
         System.out.println("Posicion – Emisor – Asunto – [Leido / Sin Leer]");
 
-      mostrarTODO(inbox,0);
+        Funciones_Recursivas.mostrarTODO(this.inbox,0);
+        int sinleer = Funciones_Recursivas.contarNOLEIDOS(this.inbox,0);
+        int correostotales = Funciones_Recursivas.contarTOTAL(this.inbox,0);
 
         System.out.println("Correos Totales: " +correostotales);
         System.out.println("Correos Sin Leer" + sinleer);

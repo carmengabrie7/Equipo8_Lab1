@@ -22,8 +22,8 @@ public class Email {
         this.Emisor = Emisor;
         this.Asunto = Asunto;
         this.Contenido = Contenido;
-        Leido = false;
-        FechaEnvio = Calendar.getInstance();
+        this.Leido = false;
+        this.FechaEnvio = Calendar.getInstance();
     }
 
     public String getEmisor() {
