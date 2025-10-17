@@ -11,8 +11,7 @@ package equipo8_lab1;
 
 import javax.swing.*;
 import java.awt.*;
-import javax.swing.table.AbstractTableModel;
-import java.awt.event.ActionEvent;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,9 +22,9 @@ public class JavaLook extends JFrame {
     private final CardLayout cartas = new CardLayout();
     private final JPanel wasd = new JPanel(cartas);
     
-    private JTextArea AreaInbox = new JTextArea();
+    private final JTextArea AreaInbox = new JTextArea();
     
-    private JLabel LblUsuarioActual;    
+    private final JLabel LblUsuarioActual;    
 
     public JavaLook() {
         super("Sistema de Email");
@@ -150,7 +149,7 @@ public class JavaLook extends JFrame {
             return;
         }
         Email Nuevo = new Email(Actual.getDireccionEmail(), Asunto, Contenido);
-        if (Receptor.recibirEmai(Nuevo)) {
+        if (Receptor.recibirEmail(Nuevo)) {
             JOptionPane.showMessageDialog(this, "Correo enviado con exito!");
         } else {
             JOptionPane.showMessageDialog(this, "Inbox del destinatario esta lleno.");
