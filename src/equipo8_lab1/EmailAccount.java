@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package equipo8_lab1;
-
+import java.util.Calendar;
 /**
  *
  * @author andre
@@ -35,12 +35,20 @@ public class EmailAccount {
     public String getNombreUsuario() {
         return nombreUsuario;
     }
+
+    public boolean recibirEmai(Email em) {
+        for (int i = 0; i < inbox.length; i++) {
+            if (inbox[i] == null) {
+                inbox[i] = em;
+                return true;
+            }
+        }
+        return false;
+    }
     
-    public boolean recibirEmmai(Email em){
-        
-        
-    return false;
-           
+    public void printInbox(){
+        Calendar hoy = Calendar.getInstance();
+    
     }
 
 
