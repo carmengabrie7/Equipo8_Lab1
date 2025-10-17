@@ -17,11 +17,11 @@ public class EmailAccount {
     
     Email[] inbox;
 
-    public EmailAccount(String direccionEmail, String password, String nombreUsuario, Email[] inbox) {
+    public EmailAccount(String direccionEmail, String password, String nombreUsuario) {
         this.direccionEmail = direccionEmail;
         this.password = password;
         this.nombreUsuario = nombreUsuario;
-        this.inbox = new Email[10];
+        inbox = new Email[10];
     }
 
     public String getDireccionEmail() {
@@ -35,6 +35,12 @@ public class EmailAccount {
     public String getNombreUsuario() {
         return nombreUsuario;
     }
+
+    public Email[] getInbox() {
+        return inbox;
+    }
+    
+    
 
     public boolean recibirEmai(Email em) {
         for (int i = 0; i < inbox.length; i++) {
