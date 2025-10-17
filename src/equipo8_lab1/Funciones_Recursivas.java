@@ -8,18 +8,24 @@ public class Funciones_Recursivas {
      if (inbox[pos] != null && !inbox[pos].isLeido())
         return  contarNOLEIDOS(inbox, pos +1) + 1; 
      //tipo de método - down
+     return contarNOLEIDOS(inbox,pos+1);
  }
 
  public static void buscaPOREMISOR (Email[] inbox,int pos, String emisorBuscado){
-     
-     
+     if (pos==inbox.length)
      return;
+     if (inbox[pos]!= null && inbox[pos].Emisor.equalsIgnoreCase(emisorBuscado))
+         System.out.println(inbox[pos]);
+     buscaPOREMISOR(inbox,pos +1, emisorBuscado);
  }
  
- public static void mostrarTODO (){
-     
+ public static void mostrarTODO (Email[] inbox,int pos){
+     if (pos==inbox.length)
      return;
- }
+     if (inbox[pos]!=null)
+         System.out.println(inbox[pos]);
+     mostrarTODO(inbox, pos +1);
+ 
  
  public static void eliminarLEIDOS(){
      
