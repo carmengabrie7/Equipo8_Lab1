@@ -3,18 +3,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package equipo8_lab1;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
 /**
  *
  * @author andre
  */
 public class EmailAccount {
-        Calendar hoy = Calendar.getInstance();
+
+    Calendar hoy = Calendar.getInstance();
 
     String direccionEmail, password, nombreUsuario;
 
-    
     Email[] inbox;
 
     public EmailAccount(String direccionEmail, String password, String nombreUsuario) {
@@ -51,17 +53,33 @@ public class EmailAccount {
         }
         return false;
     }
-    
-    public void printInbox(){
+
+    public void printInbox() {
         SimpleDateFormat FormatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-        System.out.println("Fecha de hoy: "+FormatoFecha.format(hoy.getTime()));
+        System.out.println("Fecha de hoy: " + FormatoFecha.format(hoy.getTime()));
         System.out.println("Posicion – Emisor – Asunto – [Leido / Sin Leer]");
-        
-        
-        System.out.println("Correos Totales");
-        System.out.println("Correos Sin Leer");
-        
+
+        Funciones_Recursivas.mostrarTODO(this.inbox,0);
+        int sinleer = Funciones_Recursivas.contarNOLEIDOS(this.inbox,0);
+        int correostotales = Funciones_Recursivas.contarTOTAL(this.inbox,0);
+
+        System.out.println("Correos Totales: " +correostotales);
+        System.out.println("Correos Sin Leer" + sinleer);
+
     }
 
+    public void leerEmail(int pos) {
+
+        int indice = pos - 1;
+
+        if (indice >= 0 && indice < inbox.length && inbox[indice] != null) {
+            inbox[indice].Print();
+            inbox[indice].isLeido();
+
+        } else {
+            System.out.println("Correo no existe.");
+
+        }
+    }
 
 }
