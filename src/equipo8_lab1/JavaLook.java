@@ -84,6 +84,9 @@ public class JavaLook extends JFrame {
         if (CuentaActual != null) {
             if (CuentaActual.getPassword().equals(Contrasena)) {
                 Actual = CuentaActual;
+                
+                LblUsuarioActual.setText("Usuario conetado: " + Actual.getNombreUsuario() + " (" + Actual.getDireccionEmail() + ")");
+                
                 JOptionPane.showMessageDialog(this, "Bienvenido, " + CuentaActual.getNombreUsuario());
             } else {
                 JOptionPane.showMessageDialog(this, "Contraseña incorrecta");
